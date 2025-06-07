@@ -1,5 +1,5 @@
 # TrollRPC
-
+![Image](https://github.com/user-attachments/assets/a9d84d41-4f5b-4d71-98b9-24fc42e0d9d8)
 https://github.com/andreisss/Ghosting-AMSI released a amsi bypass by breaking NdrClientCall3 which means every subsequent RPC call (eg. some name resolution uses RPC thats why web requests to github fail) breaks which kind of makes the technique obsolete. This particular dll will only break the specific RPC call to the AV scan engine, allowing all other RPC calls through. This means you can bypass amsi for both powershell/clr and then continue running commands that require RPC (everything lol). 
 
 Currently it blinds a specific RPC call to a specific AV engine ;)  For anything else you gotta tweak to your liking - depending on the architecture of the product, whether or not it makes rpc call to engine for verification.
