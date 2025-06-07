@@ -1,9 +1,6 @@
 # TrollRPC
 
-https://github.com/andreisss/Ghosting-AMSI released a amsi bypass by breaking NdrClientCall3 which means every subsequent RPC call breaks. </br> 
-Everything uses RPC which makes this kind of void. 
-
-
+https://github.com/andreisss/Ghosting-AMSI released a amsi bypass by breaking NdrClientCall3 which means every subsequent RPC call (eg. some name resolution uses RPC thats why web requests to github fail) breaks which kind of makes the technique obsolete. This particular dll will only break the specific RPC call to the AV scan engine, allowing all other RPC calls through. 
 
 ## Compilation instructions
 ```
@@ -27,8 +24,9 @@ Add-Type -MemberDefinition @"
 ## Disclaimer
 Should only be used for educational purposes!
 
-## Credits
-https://github.com/andreisss/Ghosting-AMSI
+## Upgrades
+Its made as a native c/c++ dll, but you can try doing it in c# 
+
 
 
 
