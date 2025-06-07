@@ -2,7 +2,7 @@
 
 https://github.com/andreisss/Ghosting-AMSI released a amsi bypass by breaking NdrClientCall3 which means every subsequent RPC call (eg. some name resolution uses RPC thats why web requests to github fail) breaks which kind of makes the technique obsolete. This particular dll will only break the specific RPC call to the AV scan engine, allowing all other RPC calls through. This means you can bypass amsi for both powershell/clr and then continue running commands that require RPC (everything lol). 
 
-The code is pretty morbid (;
+Currently it blinds a specific RPC call to a specific AV engine ;)  For anything else you gotta tweak to your liking - depending on the architecture of the product, whether or not it makes rpc call to engine for verification.
 
 ## Compilation instructions
 ```
@@ -29,7 +29,7 @@ Add-Type -MemberDefinition @"
 Should only be used for educational purposes!
 
 ## Upgrades
-You can try doing it in c# and making it dynamically take in specific arguments to blind chosen RPC calls (now its hardcoded)
+You can try doing it in c# and making it dynamically take in specific arguments to blind chosen RPC calls (now its hardcoded).
 
 
 
