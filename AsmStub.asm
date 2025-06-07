@@ -1,4 +1,4 @@
-; hook_ndr_asm.asm - x64 stub for NdrClientCall3 varargs hook
+; AsmStub.asm - x64 stub for NdrClientCall3 varargs hook
 ; This stub handles the hook, calls a C callback, and then jumps to a trampoline
 ; which executes the original NdrClientCall3 prologue and jumps back to the original function.
 
