@@ -1,9 +1,8 @@
 # TrollRPC
-
-https://github.com/andreisss/Ghosting-AMSI released a amsi bypass by breaking NdrClientCall3 which means every subsequent RPC call (eg. some name resolution uses RPC thats why web requests to github fail) breaks which kind of makes the technique obsolete. This particular dll will only break the specific RPC call to the AV scan engine, allowing all other RPC calls through. This means you can bypass amsi for **both powershell/clr** and then continue running commands that require RPC (everything lol). 
-
 So what is TrollRPC? Its a library to blind RPC calls based on UUID and OPNUM
-![Image](https://github.com/user-attachments/assets/8b3becbd-74e5-4d60-8f52-db029bbd9aa7)
+![Image](https://github.com/user-attachments/assets/e0fb9e17-def8-4627-847f-7bc60449115a)
+<br/> 
+https://github.com/andreisss/Ghosting-AMSI released a amsi bypass by breaking NdrClientCall3 which means every subsequent RPC call (eg. some name resolution uses RPC thats why web requests to github fail) breaks which kind of makes the technique obsolete. This particular dll will only break the specific RPC call to the AV scan engine, allowing all other RPC calls through. This means you can bypass amsi for **both powershell/clr** and then continue running commands that require RPC (everything lol). 
 
 ## C#
 ```
