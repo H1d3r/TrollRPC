@@ -14,13 +14,12 @@ $Opnum_break = 0x1F4                                       # Modify the opnum to
 ```
 
 ## C++
+C++ doesnt allow dynamic input of UUID and OPNUM, have to manually tweak the asmstub to put in the OPNUM you want and recompile (easiest way)
 ```
-#Use Visual Studio Command Prompt to compile first 
+#Use Visual Studio Command Prompt to compile first, alternatively, you can use the compiled dll
 ml64 /c /nologo /Fo AsmStub.obj AsmStub.asm
 cl /LD /O2 /MD /DNDEBUG /Zl /GS- /Gy /GF TrollRPC.cpp AsmStub.obj /link kernel32.lib user32.lib msvcrt.lib /OPT:REF /OPT:ICF /DEBUG:NONE /PDB:NONE
 
-Alternatively, you can use the compiled dll.
-C++ doesnt allow dynamic input of UUID and OPNUM, have to manually tweak the asmstub to put in the OPNUM you want and recompile (easiest way)
 Running on powershell -> Right now its hardcoded for a specific AV engine ;)
 Add-Type -MemberDefinition @"
     [DllImport("kernel32.dll", SetLastError = true)]
