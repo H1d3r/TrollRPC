@@ -3,7 +3,7 @@
 ! UPDATE 11/06/2025
 ! Added TrollPipe.cs to block CreateFileW to Files or Named Pipes because some AV/EDR use that instead of RPC
 ! [TrollPipe]::DisappearFileorPipe("<pipe or file name>")
-'''
+```
 
 # TrollRPC
 So what is TrollRPC? Its a library to blind RPC calls based on UUID and OPNUM
