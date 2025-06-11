@@ -6,25 +6,10 @@ using System.Reflection;
 public static class TrollPipe
 {
     [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-    public static extern IntPtr CreateFileW(
-        string lpFileName,
-        uint dwDesiredAccess,
-        uint dwShareMode,
-        IntPtr lpSecurityAttributes,
-        uint dwCreationDisposition,
-        uint dwFlagsAndAttributes,
-        IntPtr hTemplateFile);
-
+    public static extern IntPtr CreateFileW(string lpFileName,uint dwDesiredAccess,uint dwShareMode,IntPtr lpSecurityAttributes,uint dwCreationDisposition,uint dwFlagsAndAttributes,IntPtr hTemplateFile);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall, CharSet = CharSet.Unicode, SetLastError = true)]
-    public delegate IntPtr CreateFileWDelegate(
-    string lpFileName,
-    uint dwDesiredAccess,
-    uint dwShareMode,
-    IntPtr lpSecurityAttributes, // Use IntPtr for SECURITY_ATTRIBUTES* since it can be NULL
-    uint dwCreationDisposition,
-    uint dwFlagsAndAttributes,
-    IntPtr hTemplateFile); // Use IntPtr for HANDLE since it can be NULL
+    public delegate IntPtr CreateFileWDelegate(string lpFileName,uint dwDesiredAccess,uint dwShareMode,IntPtr lpSecurityAttributes,uint dwCreationDisposition,uint dwFlagsAndAttributes,IntPtr hTemplateFile);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall, CharSet = CharSet.Unicode, SetLastError = true)]
     public delegate bool delegateVirtualProtect(IntPtr lpAddress, int size, int newProtect, out int oldProtect);
