@@ -32,7 +32,7 @@ $Opnum_break = 0x00                                        # Modify the opnum to
 [TrollRPC]::Blind($UUID, $Opnum, $Opnum_break)
 ```
 
-## C++
+## C++ (win 10 only)
 C++ doesnt allow dynamic input of UUID and OPNUM, have to manually tweak the asmstub to put in the OPNUM you want and recompile (easiest way)
 ```
 #Use Visual Studio Command Prompt to compile first, alternatively, you can use the compiled dll
