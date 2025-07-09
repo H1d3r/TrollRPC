@@ -2,7 +2,8 @@
 ```diff
 ! UPDATE 09/07/2025
 ! For windows 11, a working $Opnum_break is 0x00
-! How did i obtain this value? used windbg and attached to powershell with the following breakpoint bp rpcrt4!NdrClientCall3 "r rdx; g"
+! How did i obtain this value? attached windbg to a fresh powershell and ran random commands
+! windbg breakpoint ->  bp rpcrt4!NdrClientCall3 "r rdx; g"
 ```
 ```diff
 ! UPDATE 11/06/2025
